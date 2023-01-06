@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Computational Musicology, Data Science, Music History, Music Theory">
+    <title>Bach Progression Finder</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-QYZKGFQ1DV"></script> -->
+<!-- <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QYZKGFQ1DV');
+  gtag('set', 'anonymizeIp', true);
+</script> -->
+<style id="gwd-text-style">
+    p {
+      margin: 0px;
+    }
+    h1 {
+      margin: 0px;
+    }
+    h2 {
+      margin: 0px;
+    }
+    h3 {
+      margin: 0px;
+    }
+  </style>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+    }
+    body {
+      background-color: transparent;
+      transform: perspective(1400px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+      transform-style: preserve-3d;
+    }
+    body * {
+      transform-style: preserve-3d;
+    }
+    .gwd-p-39ay {
+      position: absolute;
+      width: 118px;
+      height: 40px;
+      font-size: 30px;
+      left: 206px;
+      top: 452px;
+    }
+    .gwd-p-1upi {
+      position: absolute;
+      width: 87px;
+      height: 40px;
+      font-size: 30px;
+      top: 455px;
+      left: 366px;
+    }
+    .gwd-p-ryzg {
+      position: absolute;
+      font-size: 29px;
+      top: 461px;
+      left: 494px;
+    }
+    .gwd-p-5kg1 {
+      position: absolute;
+      font-size: 28px;
+      top: 459px;
+      left: 686px;
+    }
+    .gwd-p-626e {
+      position: absolute;
+      width: 129px;
+      height: 40px;
+      font-size: 30px;
+      top: 457px;
+      left: 962px;
+    }
+    .gwd-span-1f60 {
+      position: absolute;
+      font-size: 27px;
+      height: 411px;
+      width: 864px;
+      line-height: 24px;
+      left: 91px;
+      top: 30px;
+    }
+    .gwd-span-165d {
+      font-size: 24px;
+    }
+    .gwd-svg-tyif {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      height: 1px;
+      width: 26px;
+      top: 476px;
+      left: 921px;
+    }
+    .gwd-svg-1x26 {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      width: 13px;
+      height: 14px;
+      top: 461px;
+      left: 931px;
+    }
+    .gwd-svg-1c71 {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      height: 14px;
+      width: 12px;
+      top: 477px;
+      left: 935px;
+    }
+    .gwd-svg-3ak0 {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      height: 1px;
+      width: 26px;
+      top: 477px;
+      left: 653px;
+    }
+    .gwd-svg-1a2h {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      width: 13px;
+      height: 14px;
+      top: 462px;
+      left: 667px;
+    }
+    .gwd-svg-1n8q {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      height: 14px;
+      width: 12px;
+      top: 478px;
+      left: 667px;
+    }
+    .gwd-svg-11m3 {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      height: 1px;
+      width: 26px;
+      top: 473px;
+      left: 459px;
+    }
+    .gwd-svg-1iki {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      width: 13px;
+      height: 14px;
+      top: 458px;
+      left: 473px;
+    }
+    .gwd-svg-1s4h {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      height: 14px;
+      width: 12px;
+      top: 474px;
+      left: 473px;
+    }
+    .gwd-svg-1lp6 {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      height: 1px;
+      width: 26px;
+      top: 471px;
+      left: 331px;
+    }
+    .gwd-svg-11ke {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      width: 13px;
+      height: 14px;
+      top: 456px;
+      left: 345px;
+    }
+    .gwd-svg-1jyo {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      height: 14px;
+      width: 12px;
+      top: 472px;
+      left: 345px;
+    }
+    .gwd-svg-18a9 {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      height: 1px;
+      width: 26px;
+      top: 471px;
+      left: 331px;
+    }
+    .gwd-svg-17j6 {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      width: 13px;
+      height: 14px;
+      top: 456px;
+      left: 345px;
+    }
+    .gwd-svg-1huh {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      height: 14px;
+      width: 12px;
+      top: 472px;
+      left: 345px;
+    }
+    .gwd-svg-1abl {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      height: 1px;
+      width: 26px;
+      top: 472px;
+      left: 173px;
+    }
+    .gwd-svg-124l {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      width: 13px;
+      height: 14px;
+      top: 457px;
+      left: 187px;
+    }
+    .gwd-svg-10tj {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      height: 14px;
+      width: 12px;
+      top: 473px;
+      left: 187px;
+    }
+    .gwd-svg-6rn6 {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      height: 1px;
+      width: 26px;
+      top: 472px;
+      left: 173px;
+    }
+    .gwd-svg-md4i {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      width: 13px;
+      height: 14px;
+      top: 457px;
+      left: 187px;
+    }
+    .gwd-svg-nkaw {
+      position: absolute;
+      stroke-width: 1px;
+      stroke: rgb(0, 0, 0);
+      height: 14px;
+      width: 12px;
+      top: 473px;
+      left: 187px;
+    }
+    .gwd-span-117u {
+      position: absolute;
+      width: 109px;
+      height: 40px;
+      transform-origin: -33px -22px 0px;
+      top: 452px;
+      left: 59px;
+    }
+  </style>
+</head>
+
+<body class="htmlNoPages">
+  <p class="gwd-p-39ay">✄ 𝄐 ♫ 𝄐</p>
+  <p class="gwd-p-1upi">🔬📊</p>
+  <p class="gwd-p-ryzg">✎ ⋮⋮⋮⋮⋱ .txt</p>
+  <p class="gwd-p-5kg1">✎ ⋮⋮⋮⋮⋱ .musicxml</p>
+  <div><br></div>
+  <p class="gwd-p-626e">👩🏿‍💻 verovio ⇾ 🎼</p>
+  <div><br></div>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 26 1" class="gwd-svg-tyif">
+    <line x1="0" x2="26" y1="0.5" y2="0.5"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 13 14" class="gwd-svg-1x26">
+    <line x1="0.368" x2="12.632" y1="0.339" y2="13.661"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 12 14" class="gwd-svg-1c71">
+    <line x1="0.383" x2="11.617" y1="13.678" y2="0.322"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 26 1" class="gwd-svg-3ak0">
+    <line x1="0" x2="26" y1="0.5" y2="0.5"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 13 14" class="gwd-svg-1a2h">
+    <line x1="0.368" x2="12.632" y1="0.339" y2="13.661"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 12 14" class="gwd-svg-1n8q">
+    <line x1="0.383" x2="11.617" y1="13.678" y2="0.322"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 26 1" class="gwd-svg-11m3">
+    <line x1="0" x2="26" y1="0.5" y2="0.5"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 13 14" class="gwd-svg-1iki">
+    <line x1="0.368" x2="12.632" y1="0.339" y2="13.661"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 12 14" class="gwd-svg-1s4h">
+    <line x1="0.383" x2="11.617" y1="13.678" y2="0.322"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 26 1" class="gwd-svg-1lp6">
+    <line x1="0" x2="26" y1="0.5" y2="0.5"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 13 14" class="gwd-svg-11ke">
+    <line x1="0.368" x2="12.632" y1="0.339" y2="13.661"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 12 14" class="gwd-svg-1jyo">
+    <line x1="0.383" x2="11.617" y1="13.678" y2="0.322"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 26 1" class="gwd-svg-18a9">
+    <line x1="0" x2="26" y1="0.5" y2="0.5"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 13 14" class="gwd-svg-17j6">
+    <line x1="0.368" x2="12.632" y1="0.339" y2="13.661"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 12 14" class="gwd-svg-1huh">
+    <line x1="0.383" x2="11.617" y1="13.678" y2="0.322"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 26 1" class="gwd-svg-1abl">
+    <line x1="0" x2="26" y1="0.5" y2="0.5"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 13 14" class="gwd-svg-124l">
+    <line x1="0.368" x2="12.632" y1="0.339" y2="13.661"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 12 14" class="gwd-svg-10tj">
+    <line x1="0.383" x2="11.617" y1="13.678" y2="0.322"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 26 1" class="gwd-svg-6rn6">
+    <line x1="0" x2="26" y1="0.5" y2="0.5"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 13 14" class="gwd-svg-md4i">
+    <line x1="0.368" x2="12.632" y1="0.339" y2="13.661"></line>
+  </svg>
+  <svg data-gwd-shape="line" preserveAspectRatio="none" viewBox="0 0 12 14" class="gwd-svg-nkaw">
+    <line x1="0.383" x2="11.617" y1="13.678" y2="0.322"></line>
+  </svg>
+  <h3 class="gwd-span-1f60"><span class="gwd-span-165d"><a href="http://findbachprogressions.aykutcaglayan.net">This is a web application</a> to search for chord progressions (from Bach chorales), which goes from one stationary chord to another.&nbsp;
+    <div><br></div><div>Progression fragments are made using <a href="https://web.mit.edu/music21/" target="_blank">music21</a> library by cutting out between fermata notes and written to a tab separated text file.</div>
+    <div>By scanning this database file, all fragments have been written to a .musicxml file with <a href="https://github.com/MarcTheSpark/scamp" target="_blank">scamp</a> &amp; pymusicxml libraries.&nbsp;</div>
+    <div>Displaying music notation on web page is made possible with <a href="https://www.verovio.org/index.xhtml" target="_blank">verovio</a> library.</div>
+    <div><br></div><div>Source code for this project resides at: <a href="https://github.com/ayk-caglayan/bach_progressions" target="_blank">https://github.com/ayk-caglayan/bach_progressions</a></div></span>
+    <div><a href="https://github.com/ayk-caglayan/bach_progressions" target="_blank"></a></div><br>
+    <div>Please use Firefox or Chrome browsers for this web app</div>
+    <div>Because of technical reasons some keys are encoded as if they are same as their enharmonically equivalent key: search for C# rather than Db or Ab rather than G# </div>
+  </h3>
+  <span class="gwd-span-117u">music21<br>corpus chorales<br></span></body>
+
+</html>
